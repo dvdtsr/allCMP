@@ -105,9 +105,11 @@
           var a = document.getElementsByTagName("script")[0];
           a.parentNode.insertBefore(r, a)
         })(apikey, noticeid);
-        })();
+        }
 
-      }
+        document.getElementById('go').addEventListener('click', makeNotice)
+
+
 
 
 
