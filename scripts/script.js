@@ -17,6 +17,14 @@ function updateUrl() {
 
 }
 
+function updateInputs() {
+
+  Array.from(document.querySelectorAll('[data-qp]')).forEach(input => {
+    input.value = new URL(document.location.href).searchParams.get(input.getAttribute('data-qp'))
+  })
+
+}
+
 function makeNotice() {
   var apikey = new URL(document.location.href).searchParams.get('apikey');
   var noticeid = new URL(document.location.href).searchParams.get('noticeid');
@@ -25,10 +33,13 @@ function makeNotice() {
 
 }
 
-document.getElementById('go').onclick = makeNotice;
+document.getElementById('go').onclick = function() {
+  window.location.href = window.location.href;
+}
 
 window.onload = function() {
   if(new URL(document.location.href).searchParams.get('apikey') && new URL(document.location.href).searchParams.get('noticeid')) {
+    updateInputs()
     makeNotice()
   }
 }

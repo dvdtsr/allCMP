@@ -2,12 +2,20 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Didomi Notice Sandbox</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
   </head>
   <body>
-    <input type="text" id="apikey" data-qp="apikey" placeholder="api key">
-    <input type="text" id="noticeid" data-qp="noticeid" placeholder="notice id">
-    <div id="go">test</div>
+    <div id="container">
+      <input type="text" id="apikey" data-qp="apikey" placeholder="api key">
+      <input type="text" id="noticeid" data-qp="noticeid" placeholder="notice id">
+
+      <div id="controls">
+        <div id="go">reload</div>
+        <div onclick="javascript:Didomi ? Didomi.notice.show() : alert('Didomi is not there')">Didomi.notice.show();</div>
+        <div onclick="javascript:Didomi ? Didomi.reset() : alert('Didomi is not there')">Didomi.reset();</div>
+      </div>
+    </div>
 
 
     <script src="scripts/sdk.js"></script>
