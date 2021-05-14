@@ -64,7 +64,10 @@ function goDdo() {
   });
 
   _doc.getElementById('gotosandbox').addEventListener('click', function() {
-    window.open('https://dvdtsr.github.io/allCMP/?apikey=')
+    var qs = Array.from(_doc.querySelectorAll('[data-prop]')).map(el => {
+      return el.getAttribute('data-prop') + '=' + el.innerHTML;
+    }).join('&')
+    window.open('https://dvdtsr.github.io/allCMP/?' + qs)
   })
 
   function writeLine(arr) {
@@ -76,6 +79,7 @@ function goDdo() {
     line.appendChild(lline);
     var rline = document.createElement('div');
     rline.setAttribute('class', 'dido-span dido-val');
+    rline.setAttribute('data-prop', arr[1].substring(arr[1].lastIndexOf('.') +1 ))
     rline.innerHTML = eval([arr[0]] + [arr[1]]);
     line.appendChild(rline);
     _doc.getElementById('info').appendChild(line);

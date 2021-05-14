@@ -26,8 +26,8 @@ function updateInputs() {
 }
 
 function makeNotice() {
-  var apikey = new URL(document.location.href).searchParams.get('apikey');
-  var noticeid = new URL(document.location.href).searchParams.get('noticeid');
+  var apikey = new URL(document.location.href).searchParams.get('apiKey');
+  var noticeid = new URL(document.location.href).searchParams.get('notice_id');
 
   writeSDK(apikey, noticeid)
 
@@ -38,7 +38,7 @@ document.getElementById('go').onclick = function() {
 }
 
 window.onload = function() {
-  if(new URL(document.location.href).searchParams.get('apikey') && new URL(document.location.href).searchParams.get('noticeid')) {
+  if(new URL(document.location.href).searchParams.get('apiKey') && new URL(document.location.href).searchParams.get('notice_id')) {
     updateInputs()
     makeNotice()
   }
