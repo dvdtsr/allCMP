@@ -5,10 +5,20 @@ function goDdo() {
     ['didomiRemoteConfig', '.notices[0].notice_id']
   ]
 
+
   var view = `
     <style>
+
+      :root {
+        --grey-text: #999999;
+        --blue: #359cbf;
+      }
       body{
-        margin:0;
+        margin:1px;
+        font-family: 'ProximaNovaCond', Arial, sans-serif;
+      }
+      .dido-line{
+        margin:10px 0 20px 0;
       }
       #wrapper{
         width:100%;
@@ -18,6 +28,10 @@ function goDdo() {
         align-items:center;
         padding: 10px 0px 10px 10px;
         box-sizing: border-box;
+      }
+      #info{
+        height:80%;
+        overflow:scroll;
       }
       #content{
         width:calc(100% - 60px);
@@ -29,11 +43,28 @@ function goDdo() {
         box-sizing: border-box;
         padding: 20px 10px;
       }
+      #gotosandbox{
+        margin: 10px auto 10px auto;
+        width: 50%;
+        text-align: center;
+        background-color: var(--blue);
+        color: #FFFFFF;
+        padding: 10px 0;
+        cursor:pointer;
+      }
       #button{
         display:block;
         width:40px;
         height:auto;
         cursor:pointer;
+      }
+      .dido-key{
+        color: var(--grey-text);
+        pointer-events:none;
+      }
+      .dido-val{
+        color: var(--blue);
+        margin:8px 0px;
       }
 
     </style>
@@ -52,7 +83,7 @@ function goDdo() {
 
   var iframe = document.createElement('iframe');
   iframe.setAttribute('id', 'ddo-iframe');
-  iframe.setAttribute('style', 'display:block;width:400px;position:fixed;top:50%;left:0;transform:translate3d(calc(-100% + 50px), -50%, 0);border:none;transition-duration:0.3s;z-index:2147483647;')
+  iframe.setAttribute('style', 'height:300px;display:block;width:400px;position:fixed;top:50%;left:0;transform:translate3d(calc(-100% + 50px), -50%, 0);border:none;transition-duration:0.3s;z-index:2147483647;')
   document.body.appendChild(iframe)
 
   var _doc = iframe.contentWindow.document;
