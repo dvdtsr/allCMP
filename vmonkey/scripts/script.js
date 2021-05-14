@@ -57,6 +57,11 @@ function goDdo() {
         width:40px;
         height:auto;
         cursor:pointer;
+        transition-duration:0.3s;
+        opacity:0.2;
+      }
+      #button:hover{
+        opacity:1;
       }
       .dido-key{
         color: var(--grey-text);
@@ -76,7 +81,7 @@ function goDdo() {
         <div id="gotosandbox">Go to Sandbox</div>
       </div>
       <div>
-        <img id="button" src="https://simpleicon.com/wp-content/uploads/rocket.png">
+        <img id="button" src="https://console-legacy.didomi.io/assets/img/didomi-icon.svg">
       </div>
     </div>
   `
