@@ -42,6 +42,7 @@ function goDdo() {
         border-radius:5px;
         box-sizing: border-box;
         padding: 20px 10px;
+        z-index:1;
       }
       #gotosandbox{
         margin: 10px auto 10px auto;
@@ -53,12 +54,22 @@ function goDdo() {
         cursor:pointer;
       }
       #button{
+        padding: 9px;
+        box-sizing: border-box;
+        background-color: white;
+        border-radius: 0% 50% 50% 0%;
+        box-shadow:1px 1px 5px rgb(0 0 0 / 50%);
+        z-index: 0;
+        transform: translate3d(-5px, 0px, 0px);
+        opacity:0.2;
+        transition-duration:0.3s;
+
+      }
+      #button img{
         display:block;
         width:40px;
         height:auto;
         cursor:pointer;
-        transition-duration:0.3s;
-        opacity:0.2;
       }
       #button:hover{
         opacity:1;
@@ -80,8 +91,8 @@ function goDdo() {
         </div>
         <div id="gotosandbox">Go to Sandbox</div>
       </div>
-      <div>
-        <img id="button" src="https://console-legacy.didomi.io/assets/img/didomi-icon.svg">
+      <div id="button">
+        <img src="https://console-legacy.didomi.io/assets/img/didomi-icon.svg">
       </div>
     </div>
   `
@@ -96,6 +107,7 @@ function goDdo() {
   _doc.body.innerHTML = view;
 
   _doc.getElementById('button').addEventListener('click', (e) => {
+    console.log('in ');
     e.view.frameElement.classList.toggle('ddo-ifr-visible');
   });
 
