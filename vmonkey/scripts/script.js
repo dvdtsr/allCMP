@@ -59,11 +59,22 @@ function goDdo() {
         background-color: white;
         border-radius: 0% 50% 50% 0%;
         box-shadow:1px 1px 5px rgb(0 0 0 / 50%);
-        z-index: 0;
+        z-index: 1;
         transform: translate3d(-5px, 0px, 0px);
         opacity:0.2;
         transition-duration:0.3s;
-
+        margin:0 5px 0 0;
+      }
+      #button:before{
+        content: '';
+        display: block;
+        z-index: 999999999999;
+        width: 7px;
+        height: 100%;
+        position: absolute;
+        left: -4px;
+        top: 0;
+        background-color: white;
       }
       #button img{
         display:block;
