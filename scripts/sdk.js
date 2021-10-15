@@ -1,6 +1,7 @@
 
-function writeSDK(apikey, noticeid) {
-  window.gdprAppliesGlobally = true;
+function writeSDK(apikey, noticeid, global, staging) {
+  var _staging = staging ? 'staging.' : '';
+  window.gdprAppliesGlobally = global;
   (function() {
     function r() {
       if (!window.frames.__cmpLocator) {
@@ -82,7 +83,7 @@ function writeSDK(apikey, noticeid) {
     r.id = "spcloader";
     r.type = "text/javascript";
     r.async = true;
-    r.src = "https://sdk.privacy-center.org/" + e + "/loader.js?target_type=notice&target=" + t;
+    r.src = "https://sdk." + _staging + "privacy-center.org/" + e + "/loader.js?target_type=notice&target=" + t;
     r.charset = "utf-8";
     var a = document.getElementsByTagName("script")[0];
     a.parentNode.insertBefore(r, a)
