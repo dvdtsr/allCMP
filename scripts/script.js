@@ -1,3 +1,11 @@
+function b64EncodeUnicode(str) {
+    return btoa(encodeURIComponent(str));
+}
+
+function UnicodeDecodeB64(str) {
+    return decodeURIComponent(atob(str));
+}
+
 var textArea = document.getElementsByTagName('textarea')[0];
 
 function setCheckedStatus(el) {
@@ -40,7 +48,7 @@ function updateUrl() {
   if(isJSONvalid(textArea.value)) {
     var jsonStr = textArea.value;
     jsonStr = jsonStr.replace(/\s\s+/g, ' ');
-    params += '&config=' + btoa(jsonStr);
+    params += '&config=' + b64EncodeUnicode(jsonStr);
   }
 
   var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + params;
@@ -59,7 +67,7 @@ function updateInputs() {
   })
 
   if(new URL(document.location.href).searchParams.get('config')) {
-    textArea.value = atob(new URL(document.location.href).searchParams.get('config'));
+    textArea.value = UnicodeDecodeB64(new URL(document.location.href).searchParams.get('config'));
     prettyPrint();
   }
 
@@ -112,7 +120,7 @@ window.onload = function() {
 
 
   if(new URL(document.location.href).searchParams.get('config') && parseInt(new URL(document.location.href).searchParams.get('apply_conf'))) {
-    window.didomiConfig = JSON.parse(atob(new URL(document.location.href).searchParams.get('config')));
+    window.didomiConfig = JSON.parse(UnicodeDecodeB64(new URL(document.location.href).searchParams.get('config')));
   }
 
   Array.from(document.querySelectorAll('[type="checkbox"][data-qp]')).forEach(function(el) {
