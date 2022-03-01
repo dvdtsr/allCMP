@@ -52,6 +52,19 @@
 
         <div class="toggle_container">
           <label class="switch">
+            <input name="global" data-qp="loadext" type="checkbox">
+            <span class="slider round"></span>
+          </label>
+          <div class="toggle_value_container">
+            <span>External Source (.js or .css)</span>
+            <input type="text" data-encode data-qp="extsrc" required>
+          </div>
+        </div>
+
+
+
+        <div class="toggle_container">
+          <label class="switch">
             <input name="global" data-qp="apply_conf" type="checkbox">
             <span class="slider round"></span>
           </label>
@@ -77,6 +90,7 @@
 
     <script src="scripts/sdk.js"></script>
     <script src="scripts/script.js"></script>
+
 
   </body>
 </html>

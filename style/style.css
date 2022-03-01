@@ -53,6 +53,8 @@ q:before, q:after {
 	--JSONBG: #202124;
 	--JSONColor: #37d0c3;
 	--JSONColorInvalid: #e06c6e;
+	--errorText: #f74702;
+	--errorBG: #ffd7c8;
 }
 
 body{
@@ -271,6 +273,16 @@ textarea.invalid{
 	border-color:var(--JSONColorInvalid)
 }
 
+#extsrc-message{
+	position:fixed;
+	top:0;
+	width:100%;
+	text-align:center;
+	color: var(--errorText);
+	background-color:var(--errorBG);
+	cursor:pointer;
+	padding:40px 0;
+}
 
 
 @media (max-width: 700px) {

@@ -30,6 +30,9 @@ textArea.addEventListener('keyup', () => {
 function updateUrl() {
 
   var params = Array.from(document.querySelectorAll('[type="text"][data-qp]')).map(el => {
+    if(el.hasAttribute("data-encode")) {
+      return el.getAttribute('data-qp') + '=' + btoa(encodeURIComponent(el.value))
+    }
     return el.getAttribute('data-qp') + '=' + el.value;
   }).join('&');
 
@@ -51,7 +54,12 @@ function updateUrl() {
 function updateInputs() {
 
   Array.from(document.querySelectorAll('[type="text"][data-qp]')).forEach(input => {
-    input.value = new URL(document.location.href).searchParams.get(input.getAttribute('data-qp'))
+    if(input.hasAttribute("data-encode")) {
+      input.value = decodeURIComponent(atob(new URL(document.location.href).searchParams.get(input.getAttribute('data-qp'))))
+    }
+    else{
+      input.value = new URL(document.location.href).searchParams.get(input.getAttribute('data-qp'))
+    }
   })
 
   Array.from(document.querySelectorAll('[type="checkbox"][data-qp]')).forEach(input => {
@@ -119,3 +127,33 @@ window.onload = function() {
     setCheckedStatus(el)
   })
 }
+
+if(new URL(document.location.href).searchParams.get('extsrc') && parseInt(new URL(document.location.href).searchParams.get('loadext'))) {
+  var src = decodeURIComponent(atob(new URL(document.location.href).searchParams.get('extsrc')));
+  var element = document.createElement('div');
+  switch(true) {
+    case /.*\.js$/.test(src):
+      element = document.createElement('script');
+      element.src = src;
+      element.type = 'text/javascript';
+      break;
+    case /.*\.css$/.test(src):
+      element = document.createElement('link');
+      element.href = src;
+      element.type = 'text/css';
+      element.ref = 'stylesheet';
+      break;
+    default :
+      element.id = 'extsrc-message';
+      element.innerHTML = 'unable to load external source, check the file extension: only .css and .js accepted (click to hide)';
+      break;
+  }
+  document.body.appendChild(element);
+}
+
+
+document.addEventListener('click', function(e) {
+  if(e.target.getAttribute('id') == 'extsrc-message') {
+    document.getElementById('extsrc-message').parentNode.removeChild(document.getElementById('extsrc-message'));
+  }
+})
